@@ -1,0 +1,182 @@
+<title>Sorteios gratis</title>
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+</style>
+<link href="https://apps.rodrigofaustino.com.br/font/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="http://apps.rodrigofaustino.com.br/font/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="https://apps.rodrigofaustino.com.br/css/w3.css" rel="stylesheet" />
+<link href="http://apps.rodrigofaustino.com.br/css/w3.css" rel="stylesheet" />
+<body style="background-color: #5cb85c;">
+<button onclick="document.getElementById('id01').style.display='block'"
+class="w3-button"><i class="fa fa-question-circle" aria-hidden="true"></i> O que acontece quando clica em Sortear</button>
+
+<h2>CRIAR SORTEIO</h2>
+<button onclick="novo()"
+class="w3-button"><i class="fa fa-play" aria-hidden="true"></i> Novo</button>
+<button class="w3-button w3-black" id="sort" onclick="sortear()">Sortear</button>
+<P>Insira os nomes separados por vírgula</P>
+<P>Exemplo. jose de lima,maria julia,monica silva,lucas santos,rodrigo faustino,sorte online</P>
+
+<textarea name="b1" id="b1" cols="50" rows="10"></textarea>
+<p><b >Lista: </b><span id="x1"></span></p>
+<p style="color:gold">1º lugar: <i class="fa fa-trophy" aria-hidden="true"></i> <b id="0" ></b></p>
+<p style="color:silver">2º lugar: <i class="fa fa-trophy" aria-hidden="true"></i><i class="fa fa-trophy" aria-hidden="true"></i> <b id="1"></b></p>
+<p style="color:brass">3º lugar: <i class="fa fa-trophy" aria-hidden="true"></i><i class="fa fa-trophy" aria-hidden="true"></i><i class="fa fa-trophy" aria-hidden="true"></i> <b id="2"></b></p>
+<p><b >Lista pós sorteio: </b><span id="x3"></span></p>
+<script>
+function novo(){
+    location.reload();
+}
+ var nomes = new Array();//cria o array para guardar a lista
+
+function sortear(){
+ nomes.push(document.getElementById("b1").value);//recebe a listagem de nomes e guarda em um array
+ var suaString= nomes.toString();//transforma em uma listagem
+ var nomesajustado = suaString.split(',');//ajusta a listagem informando que a virgula separa os nomes
+ document.getElementById("x1").innerHTML = suaString;//exibe o array
+for(i=0;i<=2;i++){ //faz um loop para verificar os tres soteados da lista
+var sorteado =  nomesajustado[Math.floor(Math.random() * nomesajustado.length)]; //percorre a lista e escolhe um aleatoriamente
+nomesajustado.splice(nomesajustado.indexOf(sorteado), 1);//retira o sorteado da lista
+document.getElementById(i).innerHTML = sorteado;//exibe cada sorteado do primeiro sorteado ao terceiro
+
+} //volta ao loop ate o terceiro sorteio
+document.getElementById("x3").innerHTML = nomesajustado;//exibe o primeiro sorteado
+
+ document.getElementById('sort').style.display="none";//retira o bota oda tela
+ document.getElementById('b1').style.display="none";//retira a area de texto da tela
+}
+
+</script>
+<div id="id01" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+     <span onclick="document.getElementById('id01').style.display='none'"
+      class="w3-button w3-display-topright"><i class="fa fa-window-close" aria-hidden="true"></i></span>
+      <h2>Função dentro do javascript, ao apertar o botão sortear</h2>
+    </div>
+    <div class="modal-body">
+     
+<p><b>var nomes = new Array();</b>//cria o array para guardar a lista</p>
+
+<p><b>function sortear(){</b>Função para sortear</p>
+ <p><b>nomes.push(document.getElementById("b1").value);</b>//recebe a listagem de nomes e guarda em um array</p>
+<p><b>var suaString= nomes.toString();</b>//transforma em uma listagem</p>
+ <p><b>var nomesajustado = suaString.split(',');</b>//ajusta a listagem informando que a virgula separa os nomes</p>
+ <p><b>document.getElementById("x1").innerHTML = suaString;</b>//exibe o array</p>
+<p><b>for(i=0;i<=2;i++){ </b>//faz um loop para verificar os tres soteados da lista</p>
+<p><b>var sorteado =  nomesajustado[Math.floor(Math.random() * nomesajustado.length)]; </b>//percorre a lista e escolhe um aleatoriamente</p>
+<p><b>nomesajustado.splice(nomesajustado.indexOf(sorteado), 1);</b>//retira o sorteado da lista</p>
+<p><b>document.getElementById(i).innerHTML = sorteado;</b>//exibe cada sorteado do primeiro sorteado ao terceiro</p>
+
+} //volta ao loop ate o terceiro sorteio
+<p><b>document.getElementById("x3").innerHTML = nomesajustado;</b>//exibe o primeiro sorteado</p>
+
+<p><b> document.getElementById('sort').style.display="none";</b>//retira o bota oda tela</p>
+ <p><b>document.getElementById('b1').style.display="none";</b>//retira a area de texto da tela</p>
+}
+
+    </div>
+    <div class="modal-footer">
+      
+    </div>
+  </div>
+
+</div>
+<script>
+// Get the modal
+var modal = document.getElementById("id01");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
